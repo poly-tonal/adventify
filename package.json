@@ -10,9 +10,12 @@
   "author": "poly_tonal",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "express": "^4.18.2",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

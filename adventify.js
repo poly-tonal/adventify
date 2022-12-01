@@ -1,18 +1,24 @@
 const express = require("express");
+const cors = require('cors');
 const fs = require("fs");
 const csvParser = require('csv-parser')
 const app = express();
-const port = 8080;
-const pageURL = "http://localhost:8080";
+const port = 80;
+const sslport = 443;
+const pageURL = "https://adventify.app";
 
+const http = require('http');
+const https = require('https');
+
+app.use(cors())
 app.use("/static", express.static(__dirname + "/Adventify_Tracks"));
 
 app.get("/", function (req, res) {
     var day = new Date().toISOString().split("T")[0].split("-");
     var image = `/track_${day[2]}.svg`;
-    var csv = fs.readFileSync("./Adventify_Tracks/tracks.csv", "utf8")
-    csv = csv.split("\r\n")
-    console.log(csv[parseInt(day[2], 10)])
+    var csv = fs.readFileSync("/Adventify_Tracks/tracks.csv", "utf8")
+    csv = csv.split("\n")
+    //console.log(csv[parseInt(day[2], 10)])
     var link = csv[parseInt(day[2], 10)]
     res.setHeader("Content-Type", "text/html");
     res.write(
@@ -25,6 +31,12 @@ app.get("/about", function (req, res) {
     res.send("I made this lol");
 });
 
-app.listen(port, function () {
-    console.log(`Example app listening on port ${port}!`);
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer({
+        key: fs.readFileSync('/etc/letsencrypt/live/adventify.app/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/adventify.app/fullchain.pem'),
+}, app);
+
+httpServer.listen(port, () => {
+        console.log(`HTTP running on ${port}`);
 });
