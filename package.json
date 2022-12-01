@@ -1,0 +1,20 @@
+{
+  "name": "adventify",
+  "version": "1.0.0",
+  "description": "24 days of spotify codes for advent",
+  "main": "adventify.js",
+  "scripts": {
+    "start": "node adventify.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "poly_tonal",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
