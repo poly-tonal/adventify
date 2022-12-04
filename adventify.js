@@ -16,7 +16,7 @@ app.use("/static", express.static(__dirname + "/Adventify_Tracks"));
 app.get("/", function (req, res) {
     var day = new Date().toISOString().split("T")[0].split("-");
     var image = `/track_${day[2]}.svg`;
-    var csv = fs.readFileSync("/Adventify_Tracks/tracks.csv", "utf8")
+    var csv = fs.readFileSync("./Adventify_Tracks/tracks.csv", "utf8")
     csv = csv.split("\n")
     //console.log(csv[parseInt(day[2], 10)])
     var link = csv[parseInt(day[2], 10)]
