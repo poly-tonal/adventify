@@ -40,3 +40,7 @@ const httpsServer = https.createServer({
 httpServer.listen(port, () => {
         console.log(`HTTP running on ${port}`);
 });
+
+httpsServer.listen(sslport, () => {
+    console.log(`HTTP running on ${sslport}`);
+});
